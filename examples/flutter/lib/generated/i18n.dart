@@ -11,14 +11,12 @@ import 'package:flutter/material.dart';
 class S implements WidgetsLocalizations {
   const S();
 
-  static const GeneratedLocalizationsDelegate delegate =
-    GeneratedLocalizationsDelegate();
+  static const GeneratedLocalizationsDelegate delegate = GeneratedLocalizationsDelegate();
 
   static S of(BuildContext context) => Localizations.of<S>(context, S);
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
-
 }
 
 class $en extends S {
@@ -52,13 +50,13 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
 
   @override
   Future<S> load(Locale locale) {
-    final String lang = getLang(locale);
+    final lang = getLang(locale);
     if (lang != null) {
       switch (lang) {
         case "en":
           return SynchronousFuture<S>(const $en());
         default:
-          // NO-OP.
+        // NO-OP.
       }
     }
     return SynchronousFuture<S>(const S());
@@ -116,7 +114,7 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
 }
 
 String getLang(Locale l) => l == null
-  ? null
-  : l.countryCode != null && l.countryCode.isEmpty
-    ? l.languageCode
-    : l.toString();
+    ? null
+    : l.countryCode != null && l.countryCode.isEmpty
+        ? l.languageCode
+        : l.toString();
