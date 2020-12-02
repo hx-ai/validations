@@ -9,7 +9,7 @@ To support internationalization `useIntl` is enable in the `build.yaml`.
 After this you must run the build again to generate Intl messages withtin the generated files:
 
 ```dart
-pub run build_runner build
+flutter pub run build_runner build
 ```
 
 In order to extract the messages from these generated files you must run
