@@ -32,8 +32,7 @@ class FormData {
   @Size(
     min: 8,
     max: 12,
-    message:
-        r'Password must be at least be between $min and $max characters long',
+    message: r'Password must be at least be between $min and $max characters long',
   )
   String password;
   @NotEmpty(
@@ -43,8 +42,7 @@ class FormData {
 }
 
 @GenValidator()
-class LoginFormValidator extends Validator<FormData> with _$LoginFormValidator {
-}
+class LoginFormValidator extends Validator<FormData> with _$LoginFormValidator {}
 
 // class LoginScreenState extends State<LoginScreen> with ValidationMixin {
 class LoginScreenState extends State<LoginScreen> {
@@ -78,8 +76,8 @@ class LoginScreenState extends State<LoginScreen> {
   Widget emailField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      autovalidate: true,
-      decoration: InputDecoration(
+      autovalidateMode: AutovalidateMode.always,
+      decoration: const InputDecoration(
         labelText: 'Email Address',
         hintText: 'you@example.com',
       ),
@@ -93,8 +91,8 @@ class LoginScreenState extends State<LoginScreen> {
   Widget passwordField() {
     return TextFormField(
       obscureText: true,
-      autovalidate: true,
-      decoration: InputDecoration(
+      autovalidateMode: AutovalidateMode.always,
+      decoration: const InputDecoration(
         labelText: 'Password',
         hintText: 'Password',
       ),
@@ -106,8 +104,8 @@ class LoginScreenState extends State<LoginScreen> {
   Widget passwordConfirmField() {
     return TextFormField(
       obscureText: true,
-      autovalidate: true,
-      decoration: InputDecoration(
+      autovalidateMode: AutovalidateMode.always,
+      decoration: const InputDecoration(
         labelText: 'Confirm Password',
         hintText: 'Re-type password',
       ),

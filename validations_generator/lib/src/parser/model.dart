@@ -352,7 +352,7 @@ class ModelParser {
             Parameter(
               (parameter) => parameter
                 ..name = 'instance'
-                ..type = refer(model.name),
+                ..type = refer(model.getDisplayString(withNullability: false)),
             ),
           );
       },
