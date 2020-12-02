@@ -3,21 +3,22 @@
 // messages from the main program should be duplicated here with the same
 // function name.
 
-// Ignore issues from commonly used lints in this file.
-// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
-// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
-// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
-// ignore_for_file:unused_import, file_names
+// ignore_for_file: unnecessary_brace_in_string_interps
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 
+// ignore: unnecessary_new
 final messages = new MessageLookup();
 
-typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
+// ignore: unused_element
+final _keepAnalysisHappy = Intl.defaultLocale;
+
+// ignore: non_constant_identifier_names
+typedef MessageIfAbsent(String message_str, List args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'messages';
+  get localeName => 'messages';
 
   static m0(validatedValue) => "Email address is not valid";
 
@@ -41,7 +42,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "formDataFieldMatchMatchFieldMessage" : m3,
     "passwordConfirmNotEmptyMessage" : m4,
     "passwordNotBlankMessage" : m5,
-    "passwordSizeMessage" : m6,
-    "title" : MessageLookupByLibrary.simpleMessage("Hello World")
+    "passwordSizeMessage" : m6
   };
 }

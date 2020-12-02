@@ -20,7 +20,7 @@ class HomePageState extends State<HomePage> {
           headers: {
             //if your api require key then pass your key here as well e.g 'key': 'my-long-key'
             'Accept': 'application/json'
-          }).timeout(const Duration(seconds: 2));
+          }).timeout(Duration(seconds: 2));
 
       print(response.body); // it will print => title: 'qui est esse'
     } catch (error) {
@@ -31,11 +31,16 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Stateful Widget!'), backgroundColor: Colors.deepOrange),
+        appBar: AppBar(
+            title: const Text('Stateful Widget!'),
+            backgroundColor: Colors.deepOrange),
         body: Center(
             child: RaisedButton(
                 child: const Text('Get data!',
-                    style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic, fontSize: 20.0)),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontStyle: FontStyle.italic,
+                        fontSize: 20.0)),
                 onPressed: getData)));
   }
 }

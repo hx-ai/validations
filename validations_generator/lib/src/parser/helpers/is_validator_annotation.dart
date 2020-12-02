@@ -14,21 +14,23 @@ import 'has_annotation.dart';
 bool isValidatorAnnotation(ElementAnnotation annotation, [ElementType type]) {
   annotation.computeConstantValue();
 
-  final constantValue = annotation.computeConstantValue();
+  final constantValue = annotation.constantValue;
 
   if (constantValue == null) return false;
 
   final element = constantValue.type.element;
 
-  final result = hasAnnotation(element, 'Constraint') && hasAnnotation(element, 'Target');
+  final result =
+      hasAnnotation(element, 'Constraint') && hasAnnotation(element, 'Target');
 
   if (result && type != null) {
     final target = getAnnotation(element, 'Target')..computeConstantValue();
-    final targetsSet = target.computeConstantValue().getField('targets').toSetValue();
+    final targetsSet = target.constantValue.getField('targets').toSetValue();
 
     final enumType = type.toString().split('.')[1];
 
-    final hasType = targetsSet.any((value) => value?.getField(enumType) != null);
+    final hasType =
+        targetsSet.any((value) => value?.getField(enumType) != null);
 
     if (!hasType) {
       throw Exception(

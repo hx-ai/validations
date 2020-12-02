@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:validations/validations.dart';
 
 part 'login_screen.g.dart';
@@ -76,8 +75,8 @@ class LoginScreenState extends State<LoginScreen> {
   Widget emailField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      autovalidateMode: AutovalidateMode.always,
-      decoration: const InputDecoration(
+      autovalidate: true,
+      decoration: InputDecoration(
         labelText: 'Email Address',
         hintText: 'you@example.com',
       ),
@@ -91,8 +90,8 @@ class LoginScreenState extends State<LoginScreen> {
   Widget passwordField() {
     return TextFormField(
       obscureText: true,
-      autovalidateMode: AutovalidateMode.always,
-      decoration: const InputDecoration(
+      autovalidate: true,
+      decoration: InputDecoration(
         labelText: 'Password',
         hintText: 'Password',
       ),
@@ -104,8 +103,8 @@ class LoginScreenState extends State<LoginScreen> {
   Widget passwordConfirmField() {
     return TextFormField(
       obscureText: true,
-      autovalidateMode: AutovalidateMode.always,
-      decoration: const InputDecoration(
+      autovalidate: true,
+      decoration: InputDecoration(
         labelText: 'Confirm Password',
         hintText: 'Re-type password',
       ),

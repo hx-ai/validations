@@ -147,7 +147,7 @@ class ModelParser {
           element: propertyField.type.element as ClassElement,
           modelClass: model.element as ClassElement,
           elementType: ElementType.FIELD,
-          type: propertyField.type.getDisplayString(withNullability: false),
+          type: propertyField.type.displayName,
           library: library,
         )..parseElementsProperties(annotations);
 
@@ -195,7 +195,7 @@ class ModelParser {
           element: field.type.element as ClassElement,
           elementType: ElementType.FIELD,
           modelClass: model.element as ClassElement,
-          type: field.type.getDisplayString(withNullability: false),
+          type: field.type.displayName,
           library: library,
         )..parseFieldAnnotations(field);
 
@@ -265,7 +265,7 @@ class ModelParser {
         Parameter(
           (parameter) => parameter
             ..name = 'object'
-            ..type = refer(model.getDisplayString(withNullability: false)),
+            ..type = refer(model.name),
         )
       ]);
     } else {
@@ -332,7 +332,7 @@ class ModelParser {
       },
     );
 
-    final body = refer('PropertyMap<${model.getDisplayString(withNullability: false)}>')
+    final body = refer('PropertyMap<${model.name}>')
         .newInstance(
           [
             literalMap(fieldNames),
@@ -347,12 +347,12 @@ class ModelParser {
           ..name = 'props'
           ..body = body
           ..annotations.add(refer('override'))
-          ..returns = refer('PropertyMap<${model.getDisplayString(withNullability: false)}>')
+          ..returns = refer('PropertyMap<${model.name}>')
           ..requiredParameters.add(
             Parameter(
               (parameter) => parameter
                 ..name = 'instance'
-                ..type = refer(model.getDisplayString(withNullability: false)),
+                ..type = refer(model.name),
             ),
           );
       },
@@ -404,8 +404,7 @@ class ModelParser {
     if (annotation.isContainerAnnotation) {
       final containerValidator = _getValidatorForModel(classElement);
 
-      final str = refer(
-          '${containerValidator.getDisplayString(withNullability: true)}()..validationContext = validationContext,');
+      final str = refer('${containerValidator.type.displayName}()..validationContext = validationContext,');
 
       positionalArguments.add(str);
     }
@@ -652,7 +651,7 @@ class ModelParser {
 
   /// Find the model associated with this validator.
   void _findModel() {
-    if (!validatorType.isAssignableFromType(generatorClass.thisType)) {
+    if (!validatorType.isAssignableFromType(generatorClass.type)) {
       throw Exception('Validators must implement Validator interface!');
     }
 
@@ -673,7 +672,7 @@ class ModelParser {
     for (var annotatedElement in library.annotatedWith(genValidatorType)) {
       final model = _getModelFromFirstGenericTypeArgument(annotatedElement.element as ClassElement);
 
-      if (model.getDisplayString(withNullability: true) == validatedModel.name) {
+      if (model.name == validatedModel.name) {
         found.add(annotatedElement.element as ClassElement);
       }
     }

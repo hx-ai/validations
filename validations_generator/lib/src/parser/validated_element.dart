@@ -126,8 +126,9 @@ class ValidatedElement {
     ElementType elementType,
   ) {
     final fieldAnnotation = ElementValidationAnnotation(
-      type: constantValue.type.getDisplayString(withNullability: true),
-    )..isContainerAnnotation = containerAnnotationType.isAssignableFromType(constantValue.type);
+      type: constantValue.type.displayName,
+    )..isContainerAnnotation =
+        containerAnnotationType.isAssignableFromType(constantValue.type);
 
     final annotationClass = constantValue.type.element as ClassElement;
 
@@ -149,7 +150,7 @@ class ValidatedElement {
 
         if (classField == null) {
           throw Exception(
-            '@property: `${constantValue.type.getDisplayString(withNullability: true)}.${field.name}` refers to a field which does not exist: ${element.name}.$value',
+            '@property: `${constantValue.type.name}.${field.name}` refers to a field which does not exist: ${element.name}.$value',
           );
         }
 
@@ -161,7 +162,8 @@ class ValidatedElement {
           MessageMethod(
             name: parameter.name,
             validator: validatedBy,
-            methodName: '${deCapitalize(name)}${capitalize(fieldAnnotation.type)}${capitalize(parameter.name)}',
+            methodName:
+                '${deCapitalize(name)}${capitalize(fieldAnnotation.type)}${capitalize(parameter.name)}',
             message: param.stringValue,
           ),
         );
@@ -170,7 +172,8 @@ class ValidatedElement {
           MessageMethod(
             name: 'message',
             validator: validatedBy,
-            methodName: '${deCapitalize(name)}${capitalize(fieldAnnotation.type)}Message',
+            methodName:
+                '${deCapitalize(name)}${capitalize(fieldAnnotation.type)}Message',
             message: param.stringValue,
           ),
         );
@@ -178,7 +181,7 @@ class ValidatedElement {
         fieldAnnotation.parameters.add(
           AnnotationParameter(
             name: parameter.name,
-            type: parameter.type.getDisplayString(withNullability: false),
+            type: parameter.type.displayName,
             value: param.literalValue,
             isNull: param.isNull,
           ),
@@ -206,7 +209,8 @@ class ValidatedElement {
       );
     }
 
-    final validatedBy = constraintAnnotation.computeConstantValue().getField('validatedBy');
+    final validatedBy =
+        constraintAnnotation.constantValue.getField('validatedBy');
 
     if (validatedBy == null) {
       throw Exception(
