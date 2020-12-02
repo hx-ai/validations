@@ -25,13 +25,19 @@ dependencies:
   cupertino_icons: ^0.1.2
 
   validations:
+    git:
+      url: https://github.com/hx-ai/validations
+      path: validations
   intl_translation: 0.17.10+1
   flutter_localizations:
     sdk: flutter
 
 dev_dependencies:
   validations_generator:
-  build_runner: 1.6.2
+    git:
+      url: https://github.com/hx-ai/validations
+      path: validations_generator
+  build_runner: ^1.10.6
   intl_utils: ^1.9.0
   flutter_test:
     sdk: flutter
