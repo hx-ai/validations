@@ -36,7 +36,7 @@ dependencies:
 
 dev_dependencies:
   build_runner: 1.6.2
-  validations:
+  validations-generator:
     git:
       url: git@github.com:hx-ai/validations.git
       ref: master
