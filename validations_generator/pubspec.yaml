@@ -6,27 +6,26 @@ authors:
 homepage: https://github.com/dartlib/validations.git
 
 environment:
-  sdk: '>=2.2.2 <3.0.0'
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   validations:
     git:
       url: https://github.com/hx-ai/validations
       path: validations
-  analyzer: ^0.36.0
-  build: '>=0.12.6 <2.0.0'
-  build_config: '>=0.2.6 <0.5.0'
+  build: ^1.2.2
+  build_config: ^0.4.2
   logging: ^0.11.3+2
-  source_gen: ^0.9.4+2
+  source_gen: ^0.9.4+4
   code_builder: ^3.2.0
-  dart_style: ^1.2.8
+  dart_style: ^1.2.9
   meta: ^1.0.0
 
 dev_dependencies:
   decimal: ^0.3.3
   pedantic: ^1.8.0
-  test: ^1.6.4
-  build_runner:
+  test: ^1.14.7
+  build_runner: ^1.9.0
   intl: ^0.16.1
-  build_test: ^0.10.8
+  build_test: ^0.10.12+1
   collection: ^1.14.11
