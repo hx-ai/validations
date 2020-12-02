@@ -127,8 +127,7 @@ class ValidatedElement {
   ) {
     final fieldAnnotation = ElementValidationAnnotation(
       type: constantValue.type.displayName,
-    )..isContainerAnnotation =
-        containerAnnotationType.isAssignableFromType(constantValue.type);
+    )..isContainerAnnotation = containerAnnotationType.isAssignableFromType(constantValue.type);
 
     final annotationClass = constantValue.type.element as ClassElement;
 
@@ -162,8 +161,7 @@ class ValidatedElement {
           MessageMethod(
             name: parameter.name,
             validator: validatedBy,
-            methodName:
-                '${deCapitalize(name)}${capitalize(fieldAnnotation.type)}${capitalize(parameter.name)}',
+            methodName: '${deCapitalize(name)}${capitalize(fieldAnnotation.type)}${capitalize(parameter.name)}',
             message: param.stringValue,
           ),
         );
@@ -172,8 +170,7 @@ class ValidatedElement {
           MessageMethod(
             name: 'message',
             validator: validatedBy,
-            methodName:
-                '${deCapitalize(name)}${capitalize(fieldAnnotation.type)}Message',
+            methodName: '${deCapitalize(name)}${capitalize(fieldAnnotation.type)}Message',
             message: param.stringValue,
           ),
         );
@@ -209,8 +206,7 @@ class ValidatedElement {
       );
     }
 
-    final validatedBy =
-        constraintAnnotation.constantValue.getField('validatedBy');
+    final validatedBy = constraintAnnotation.computeConstantValue().getField('validatedBy');
 
     if (validatedBy == null) {
       throw Exception(

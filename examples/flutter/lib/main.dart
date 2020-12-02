@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 
+import 'generated/intl/messages_all.dart';
 import 'home_page.dart';
-import 'l10n/messages_all.dart';
 
 void main() => runApp(MyApp());
 
 class AppLocalizations {
   static Future<AppLocalizations> load(Locale locale) {
-    final name =
-        locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
+    final name = locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
 
     return initializeMessages(localeName).then((_) {
@@ -53,8 +52,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       locale: const Locale('nl', ''),
-      onGenerateTitle: (BuildContext context) =>
-          AppLocalizations.of(context).title,
+      onGenerateTitle: (BuildContext context) => AppLocalizations.of(context).title,
       localizationsDelegates: [
         const AppLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
