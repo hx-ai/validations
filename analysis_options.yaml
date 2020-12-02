@@ -3,7 +3,7 @@ analyzer:
   exclude:
     - "TODO/"
   strong-mode:
-    implicit-casts: false
+    implicit-casts: true
   errors:
     dead_code: error
     unused_element: error

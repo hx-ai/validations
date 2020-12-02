@@ -12,16 +12,13 @@ After this you must run the build again to generate Intl messages withtin the ge
 flutter pub run build_runner build
 ```
 
-In order to extract the messages from these generated files you must run
-a command similar to the one below:
+Generate Messages:
 
 ```dart
-flutter pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/**/*.g.dart
+flutter pub run intl_utils:generate
 ```
 
-The default generated file is `intl_messages.arb`
-
-Use `--output-file` to specify a different output file.
+Note: analysis_options.yaml requires strong-mode -> implicit-casts: true
 
 
 
