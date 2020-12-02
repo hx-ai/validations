@@ -1,3 +1,8 @@
+# Clean up dependencies and cache issues in the entire project
+# Add a properties file named clean.properties to project root
+# Add the path to your .pubcache directory in flutter sdk
+# pubcache=[PATH TO]/flutter/.pub-cache
+
 echo "Cleaning Project"
 
 PROPERTY_FILE="./clean.properties"
