@@ -14,4 +14,4 @@ build/
 coverage
 coverage_badge.svg
 
-TODO
+.idea/*
