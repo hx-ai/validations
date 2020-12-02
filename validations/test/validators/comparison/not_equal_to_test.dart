@@ -12,7 +12,7 @@ void main() {
     3,
     'B',
     1.0,
-    Duration(days: 11),
+    const Duration(days: 11),
   ];
 
   final values = [
@@ -37,8 +37,8 @@ void main() {
       notEqualValues,
     ],
     [
-      Duration(days: 10),
-      Duration(days: 10),
+      const Duration(days: 10),
+      const Duration(days: 10),
       notEqualValues,
     ]
   ];

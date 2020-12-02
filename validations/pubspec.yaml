@@ -1,9 +1,10 @@
 name: validations
 description: Validations for dart models.
-version: 0.8.7
-homepage: https://github.com/dartlib/validations.git
-author: Rob Halff <rob.halff@gmail.com>
-
+version: 0.8.8
+homepage: https://github.com/hx-ai/validations
+authors:
+  - Rob Halff <rob.halff@gmail.com>
+  - Tim Christensen <tim@hx.ai>
 environment:
   sdk: ">=2.7.0 <3.0.0"
 

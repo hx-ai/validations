@@ -3,8 +3,8 @@ import 'package:validations/validators/date.dart';
 import '../../test_validator.dart';
 
 void main() {
-  final future = DateTime.now().add(Duration(days: 100));
-  final past = DateTime.now().add(Duration(days: -100));
+  final future = DateTime.now().add(const Duration(days: 100));
+  final past = DateTime.now().add(const Duration(days: -100));
 
   TestValidator(InFutureValidator(timeUnit: TimeUnit.day))
     ..isValid({

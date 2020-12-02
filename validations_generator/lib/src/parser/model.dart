@@ -195,7 +195,7 @@ class ModelParser {
           element: field.type.element as ClassElement,
           elementType: ElementType.FIELD,
           modelClass: model.element as ClassElement,
-          type: field.type.displayName,
+          type: field.type.getDisplayString(withNullability: false),
           library: library,
         )..parseFieldAnnotations(field);
 
@@ -265,7 +265,7 @@ class ModelParser {
         Parameter(
           (parameter) => parameter
             ..name = 'object'
-            ..type = refer(model.name),
+            ..type = refer(model.getDisplayString(withNullability: false)),
         )
       ]);
     } else {
@@ -332,7 +332,7 @@ class ModelParser {
       },
     );
 
-    final body = refer('PropertyMap<${model.name}>')
+    final body = refer('PropertyMap<${model..getDisplayString(withNullability: false)}>')
         .newInstance(
           [
             literalMap(fieldNames),
@@ -347,12 +347,12 @@ class ModelParser {
           ..name = 'props'
           ..body = body
           ..annotations.add(refer('override'))
-          ..returns = refer('PropertyMap<${model.name}>')
+          ..returns = refer('PropertyMap<${model.getDisplayString(withNullability: false)}>')
           ..requiredParameters.add(
             Parameter(
               (parameter) => parameter
                 ..name = 'instance'
-                ..type = refer(model.name),
+                ..type = refer(model.getDisplayString(withNullability: false)),
             ),
           );
       },
@@ -405,7 +405,7 @@ class ModelParser {
       final containerValidator = _getValidatorForModel(classElement);
 
       final str = refer(
-          '${containerValidator.thisType.getDisplayString(withNullability: true)}()..validationContext = validationContext,');
+          '${containerValidator.thisType.getDisplayString(withNullability: false)}()..validationContext = validationContext,');
 
       positionalArguments.add(str);
     }
@@ -673,7 +673,7 @@ class ModelParser {
     for (var annotatedElement in library.annotatedWith(genValidatorType)) {
       final model = _getModelFromFirstGenericTypeArgument(annotatedElement.element as ClassElement);
 
-      if (model.name == validatedModel.name) {
+      if (model.getDisplayString(withNullability: false) == validatedModel.name) {
         found.add(annotatedElement.element as ClassElement);
       }
     }

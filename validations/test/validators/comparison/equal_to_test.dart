@@ -11,7 +11,7 @@ void main() {
     4,
     'B',
     1.0,
-    Duration(days: 11),
+    const Duration(days: 11),
   ];
 
   final values = [
@@ -36,8 +36,8 @@ void main() {
       falseValues,
     ],
     [
-      Duration(days: 10),
-      Duration(days: 10),
+      const Duration(days: 10),
+      const Duration(days: 10),
       falseValues,
     ],
   ];

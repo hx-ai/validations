@@ -1,6 +1,7 @@
 
 analyzer:
   exclude:
+    - lib/generated/intl/*.dart
     - "TODO/"
   strong-mode:
     implicit-casts: true

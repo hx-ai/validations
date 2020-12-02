@@ -76,8 +76,8 @@ class LoginScreenState extends State<LoginScreen> {
   Widget emailField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      autovalidate: true,
-      decoration: InputDecoration(
+      autovalidateMode: AutovalidateMode.always,
+      decoration: const InputDecoration(
         labelText: 'Email Address',
         hintText: 'you@example.com',
       ),
@@ -91,8 +91,8 @@ class LoginScreenState extends State<LoginScreen> {
   Widget passwordField() {
     return TextFormField(
       obscureText: true,
-      autovalidate: true,
-      decoration: InputDecoration(
+      autovalidateMode: AutovalidateMode.always,
+      decoration: const InputDecoration(
         labelText: 'Password',
         hintText: 'Password',
       ),
@@ -104,8 +104,8 @@ class LoginScreenState extends State<LoginScreen> {
   Widget passwordConfirmField() {
     return TextFormField(
       obscureText: true,
-      autovalidate: true,
-      decoration: InputDecoration(
+      autovalidateMode: AutovalidateMode.always,
+      decoration: const InputDecoration(
         labelText: 'Confirm Password',
         hintText: 'Re-type password',
       ),

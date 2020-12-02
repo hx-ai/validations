@@ -11,10 +11,10 @@ void main() {
     3,
     'B',
     1.0,
-    Duration(days: 10),
+    const Duration(days: 10),
   ];
 
-  final sameRef = Duration(days: 10);
+  final sameRef = const Duration(days: 10);
   final values = [
     [
       2,
