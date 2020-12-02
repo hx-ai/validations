@@ -92,11 +92,9 @@ class ModelParser {
       validatedClassElement,
     ];
 
-    final messageMethodsForFields =
-        await _buildMessageMethodsForFields(validatedElements);
+    final messageMethodsForFields = await _buildMessageMethodsForFields(validatedElements);
 
-    final messageMethodsForClass =
-        await _buildMessageMethodsForField(validatedClassElement);
+    final messageMethodsForClass = await _buildMessageMethodsForField(validatedClassElement);
 
     final classMethods = [
       ...messageMethodsForFields,
@@ -135,23 +133,21 @@ class ModelParser {
   ///       ],
   ///     },
   ///   )
-  List<ValidatedElement> _getGenValidatorFields(
-      List<ValidatedElement> annotatedFields) {
+  List<ValidatedElement> _getGenValidatorFields(List<ValidatedElement> annotatedFields) {
     final fields = genValidatorAnnotation.getField('fields').toMapValue();
 
     if (fields != null) {
       for (var name in fields.keys) {
         final annotations = fields[name].toListValue();
 
-        final propertyField =
-            (model.element as ClassElement).getField(name.toStringValue());
+        final propertyField = (model.element as ClassElement).getField(name.toStringValue());
 
         final annotatedField = ValidatedElement(
           name: name.toStringValue(),
           element: propertyField.type.element as ClassElement,
           modelClass: model.element as ClassElement,
           elementType: ElementType.FIELD,
-          type: propertyField.type.displayName,
+          type: propertyField.type.getDisplayString(withNullability: false),
           library: library,
         )..parseElementsProperties(annotations);
 
@@ -199,7 +195,7 @@ class ModelParser {
           element: field.type.element as ClassElement,
           elementType: ElementType.FIELD,
           modelClass: model.element as ClassElement,
-          type: field.type.displayName,
+          type: field.type.getDisplayString(withNullability: false),
           library: library,
         )..parseFieldAnnotations(field);
 
@@ -269,7 +265,7 @@ class ModelParser {
         Parameter(
           (parameter) => parameter
             ..name = 'object'
-            ..type = refer(model.name),
+            ..type = refer(model.getDisplayString(withNullability: false)),
         )
       ]);
     } else {
@@ -336,7 +332,7 @@ class ModelParser {
       },
     );
 
-    final body = refer('PropertyMap<${model.name}>')
+    final body = refer('PropertyMap<${model.getDisplayString(withNullability: false)}>')
         .newInstance(
           [
             literalMap(fieldNames),
@@ -351,7 +347,7 @@ class ModelParser {
           ..name = 'props'
           ..body = body
           ..annotations.add(refer('override'))
-          ..returns = refer('PropertyMap<${model.name}>')
+          ..returns = refer('PropertyMap<${model.getDisplayString(withNullability: false)}>')
           ..requiredParameters.add(
             Parameter(
               (parameter) => parameter
@@ -387,8 +383,7 @@ class ModelParser {
   ///  }
   ///
 
-  Map<String, Expression> _getNamedParameters(
-      List<AnnotationParameter> parameters) {
+  Map<String, Expression> _getNamedParameters(List<AnnotationParameter> parameters) {
     final namedParams = <String, Expression>{};
 
     for (var parameter in parameters) {
@@ -410,7 +405,7 @@ class ModelParser {
       final containerValidator = _getValidatorForModel(classElement);
 
       final str = refer(
-          '${containerValidator.type.displayName}()..validationContext = validationContext,');
+          '${containerValidator.getDisplayString(withNullability: true)}()..validationContext = validationContext,');
 
       positionalArguments.add(str);
     }
@@ -462,8 +457,7 @@ class ModelParser {
     for (var annotation in field.annotations) {
       final namedParams = _getNamedParameters(annotation.parameters);
 
-      final positionalArguments =
-          _buildPositionalArguments(annotation, field.element);
+      final positionalArguments = _buildPositionalArguments(annotation, field.element);
 
       final statement = refer('${annotation.type}Validator').newInstance(
         positionalArguments,
@@ -494,9 +488,7 @@ class ModelParser {
           block.addAll(
             [
               const Code('..'),
-              refer(messageMethod.name)
-                  .assign(refer(messageMethod.generatedMethodName))
-                  .code,
+              refer(messageMethod.name).assign(refer(messageMethod.generatedMethodName)).code,
             ],
           );
         }
@@ -660,7 +652,7 @@ class ModelParser {
 
   /// Find the model associated with this validator.
   void _findModel() {
-    if (!validatorType.isAssignableFromType(generatorClass.type)) {
+    if (!validatorType.isAssignableFromType(generatorClass.thisType)) {
       throw Exception('Validators must implement Validator interface!');
     }
 
@@ -679,10 +671,9 @@ class ModelParser {
   ClassElement _getValidatorForModel(ClassElement validatedModel) {
     final found = <ClassElement>[];
     for (var annotatedElement in library.annotatedWith(genValidatorType)) {
-      final model = _getModelFromFirstGenericTypeArgument(
-          annotatedElement.element as ClassElement);
+      final model = _getModelFromFirstGenericTypeArgument(annotatedElement.element as ClassElement);
 
-      if (model.name == validatedModel.name) {
+      if (model.getDisplayString(withNullability: true) == validatedModel.name) {
         found.add(annotatedElement.element as ClassElement);
       }
     }
@@ -699,8 +690,7 @@ class ModelParser {
   /// Looks at the first generic type argument of the validator class.
   /// To determine what model it is trying to validate.
   DartType _getModelFromFirstGenericTypeArgument(ClassElement clazz) {
-    final interface =
-        clazz.allSupertypes.firstWhere(validatorType.isExactlyType);
+    final interface = clazz.allSupertypes.firstWhere(validatorType.isExactlyType);
 
     final model = interface.typeArguments.first;
 

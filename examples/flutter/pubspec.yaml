@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -25,25 +25,19 @@ dependencies:
   cupertino_icons: ^0.1.2
 
   validations:
-    git:
-      url: git@github.com:hx-ai/validations.git
-      ref: master
-      path: validations
-  intl: ^0.16.1
-  intl_translation: ^0.17.10+1
+  intl_translation: 0.17.10+1
   flutter_localizations:
     sdk: flutter
 
 dev_dependencies:
+  validations_generator:
   build_runner: 1.6.2
-  validations-generator:
-    git:
-      url: git@github.com:hx-ai/validations.git
-      ref: master
-      path: validations-generator
   intl_utils: ^1.9.0
   flutter_test:
     sdk: flutter
+
+dependency_overrides:
+  intl: 0.16.1
 
 
 # For information on the generic Dart part of this file, see the
