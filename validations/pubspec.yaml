@@ -4,7 +4,6 @@ version: 0.8.8
 homepage: https://github.com/hx-ai/validations
 authors:
   - Rob Halff <rob.halff@gmail.com>
-  - Tim Christensen <tim@hx.ai>
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
