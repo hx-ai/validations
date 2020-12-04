@@ -7,21 +7,21 @@ part of 'request_data.dart';
 // **************************************************************************
 
 abstract class _$RequestDataValidator implements Validator<RequestData> {
-  static String notBlankNotBlankMessage12(Object validatedValue) =>
-      Intl.message('Field must not be blank',
-          name: 'notBlankNotBlankMessage12', args: [validatedValue]);
-  static String emailEmailMessage1(Object validatedValue) =>
-      Intl.message('Field must be an email',
-          name: 'emailEmailMessage1', args: [validatedValue]);
+  static String notBlankNotBlankMessage(Object validatedValue) =>
+      Intl.message('Field must not be blank.',
+          name: 'notBlankNotBlankMessage', args: [validatedValue]);
+  static String emailEmailMessage(Object validatedValue) =>
+      Intl.message('Field must be an email.',
+          name: 'emailEmailMessage', args: [validatedValue]);
   @override
   List<FieldValidator> getFieldValidators() {
     return [
-      FieldValidator<String>(name: 'notBlank', validators: [
-        NotBlankValidator()..message = notBlankNotBlankMessage12
-      ]),
+      FieldValidator<String>(
+          name: 'notBlank',
+          validators: [NotBlankValidator()..message = notBlankNotBlankMessage]),
       FieldValidator<String>(
           name: 'email',
-          validators: [EmailValidator()..message = emailEmailMessage1])
+          validators: [EmailValidator()..message = emailEmailMessage])
     ];
   }
 

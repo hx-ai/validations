@@ -10,11 +10,11 @@ abstract class _$LoginFormValidator implements Validator<FormData> {
   static String emailNotBlankMessage(Object validatedValue) =>
       Intl.message('You must fill in an email address',
           name: 'emailNotBlankMessage', args: [validatedValue]);
-  static String emailEmailMessage(Object validatedValue) =>
+  static String emailEmailMessage1(Object validatedValue) =>
       Intl.message('Email address is not valid',
-          name: 'emailEmailMessage', args: [validatedValue]);
+          name: 'emailEmailMessage1', args: [validatedValue]);
   static String passwordNotBlankMessage(Object validatedValue) =>
-      Intl.message('Password cannot be blank.',
+      Intl.message('Password cannot be blank',
           name: 'passwordNotBlankMessage', args: [validatedValue]);
   static String passwordSizeMessage(int min, int max, Object validatedValue) =>
       Intl.message(
@@ -39,7 +39,7 @@ abstract class _$LoginFormValidator implements Validator<FormData> {
     return [
       FieldValidator<String>(name: 'email', validators: [
         NotBlankValidator()..message = emailNotBlankMessage,
-        EmailValidator()..message = emailEmailMessage
+        EmailValidator()..message = emailEmailMessage1
       ]),
       FieldValidator<String>(
           name: 'password',

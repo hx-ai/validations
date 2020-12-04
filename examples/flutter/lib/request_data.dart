@@ -7,9 +7,9 @@ part 'request_data.g.dart';
 class RequestDataValidator extends Validator<RequestData> with _$RequestDataValidator {}
 
 class RequestData {
-  @NotBlank(message: 'Field must not be blank')
+  @NotBlank(message: 'Field must not be blank.')
   String notBlank;
 
-  @Email(message: 'Field must be an email')
+  @Email(message: 'Field must be an email.')
   String email;
 }

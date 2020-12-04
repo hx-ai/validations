@@ -27,7 +27,7 @@ class FormData {
   String email;
 
   @NotBlank(
-    message: 'Password cannot be blank.',
+    message: 'Password cannot be blank',
   )
   @Size(
     min: 8,
