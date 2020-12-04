@@ -5,8 +5,7 @@ ElementAnnotation getAnnotation(Element field, String name) {
     (annotation) {
       annotation.computeConstantValue();
 
-      return annotation.element.name == name ||
-          annotation.computeConstantValue()?.type?.getDisplayString(withNullability: false) == name;
+      return annotation.element.name == name || annotation.computeConstantValue()?.type?.element?.displayName == name;
     },
     orElse: () => null,
   );

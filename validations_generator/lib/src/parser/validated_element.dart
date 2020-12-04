@@ -126,7 +126,7 @@ class ValidatedElement {
     ElementType elementType,
   ) {
     final fieldAnnotation = ElementValidationAnnotation(
-      type: constantValue.type.getDisplayString(withNullability: false),
+      type: constantValue.type.element.displayName,
     )..isContainerAnnotation = containerAnnotationType.isAssignableFromType(constantValue.type);
 
     final annotationClass = constantValue.type.element as ClassElement;
@@ -149,7 +149,7 @@ class ValidatedElement {
 
         if (classField == null) {
           throw Exception(
-            '@property: `${constantValue.type.getDisplayString(withNullability: false)}.${field.name}` refers to a field which does not exist: ${element.name}.$value',
+            '@property: `${constantValue.type.element.displayName}.${field.name}` refers to a field which does not exist: ${element.name}.$value',
           );
         }
 
@@ -178,7 +178,7 @@ class ValidatedElement {
         fieldAnnotation.parameters.add(
           AnnotationParameter(
             name: parameter.name,
-            type: parameter.type.getDisplayString(withNullability: false),
+            type: parameter.type.element.displayName,
             value: param.literalValue,
             isNull: param.isNull,
           ),
