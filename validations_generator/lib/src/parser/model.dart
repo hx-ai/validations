@@ -438,7 +438,7 @@ class ModelParser {
 
           messageMethods.add(
             _buildMessageMethod(
-              messageMethod.generatedMethodName,
+              messageMethod.methodName,
               parameters,
               messageMethod.message,
             ),
@@ -487,7 +487,7 @@ class ModelParser {
           block.addAll(
             [
               const Code('..'),
-              refer(messageMethod.name).assign(refer(messageMethod.generatedMethodName)).code,
+              refer(messageMethod.name).assign(refer(messageMethod.methodName)).code,
             ],
           );
         }

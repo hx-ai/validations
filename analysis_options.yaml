@@ -2,6 +2,7 @@
 analyzer:
   exclude:
     - lib/generated/intl/*.dart
+    - validations/test/.test_coverage.dart
     - "TODO/"
   strong-mode:
     implicit-casts: true

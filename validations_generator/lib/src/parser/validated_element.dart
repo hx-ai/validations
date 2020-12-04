@@ -133,6 +133,20 @@ class ValidatedElement {
 
     final validatedBy = _getValidatedBy(annotationClass);
 
+    final Set<String> messageMethodNames = {};
+
+    /// Handle the possibility of a duplicate message method name
+    void _addMessageMethod(MessageMethod messageMethod) {
+      if (messageMethodNames.contains(messageMethod.methodName)) {
+        throw Exception(
+          'Duplicate message name:${messageMethod.methodName} - check for a duplicate validation annotation',
+        );
+      }
+
+      messageMethodNames.add(messageMethod.methodName);
+      fieldAnnotation.messageMethods.add(messageMethod);
+    }
+
     for (var parameter in parameters) {
       final param = reader.read(parameter.name);
 
@@ -157,7 +171,7 @@ class ValidatedElement {
       }
 
       if (hasErrorMessageAnnotation && !param.isNull) {
-        fieldAnnotation.messageMethods.add(
+        _addMessageMethod(
           MessageMethod(
             name: parameter.name,
             validator: validatedBy,
@@ -166,7 +180,7 @@ class ValidatedElement {
           ),
         );
       } else if (parameter.name == 'message' && !param.isNull) {
-        fieldAnnotation.messageMethods.add(
+        _addMessageMethod(
           MessageMethod(
             name: 'message',
             validator: validatedBy,

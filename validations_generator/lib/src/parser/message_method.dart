@@ -1,41 +1,18 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:code_builder/code_builder.dart';
 
-final seqExp = RegExp(r'(\d+)$');
-
 class MessageMethod {
   final String name;
   final String message;
   final ClassElement validator;
   final String methodName;
 
-  static Set<String> methodNames = {};
-
-  String _generatedMethodName;
-
   MessageMethod({
     this.name,
     this.methodName,
     this.message,
     this.validator,
-  }) {
-    _generatedMethodName = _generateMethodName(methodName);
-  }
-
-  String _generateMethodName(String name) {
-    var methodName = name;
-
-    while (methodNames.contains(methodName)) {
-      final matches = seqExp.allMatches(methodName);
-      final count =
-          matches.isEmpty ? 1 : int.parse(matches.toList().first.group(1)) + 1;
-      methodName = '$methodName$count';
-    }
-
-    methodNames.add(methodName);
-
-    return methodName;
-  }
+  });
 
   Future<List<Parameter>> getParameters() async {
     final messageMethodParameters = <Parameter>[];
@@ -50,11 +27,10 @@ class MessageMethod {
         ].join('\n'),
       );
     }
-    final resolvedLibrary = await defaultMessageMethod.library.session
-        .getResolvedLibraryByElement(defaultMessageMethod.library);
+    final resolvedLibrary =
+        await defaultMessageMethod.library.session.getResolvedLibraryByElement(defaultMessageMethod.library);
 
-    final fieldDeclaration =
-        resolvedLibrary.getElementDeclaration(defaultMessageMethod);
+    final fieldDeclaration = resolvedLibrary.getElementDeclaration(defaultMessageMethod);
     final source = fieldDeclaration.node.toSource();
 
     final exp = RegExp(r'\((.+)\)');
@@ -83,9 +59,5 @@ class MessageMethod {
     }
 
     return messageMethodParameters;
-  }
-
-  String get generatedMethodName {
-    return _generatedMethodName;
   }
 }
