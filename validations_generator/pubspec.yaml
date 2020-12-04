@@ -1,5 +1,5 @@
 name: validations_generator
-version: 0.9.4
+version: 0.9.5
 description: Generator for the validations package.
 authors:
 - Rob Halff <rob.halff@gmail.com>
@@ -11,9 +11,7 @@ environment:
 
 dependencies:
   validations:
-    git:
-      url: https://github.com/hx-ai/validations
-      path: validations
+    path: ../validations
   build: ^1.2.2
   build_config: ^0.4.2
   logging: ^0.11.3+2

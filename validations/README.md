@@ -27,6 +27,12 @@ dev_dependencies:
         path: validations_generator
 ```
 
+Getting the latest version from the GIT repository
+
+```bash
+flutter packages upgrade
+```
+
 First declare your model and assign a generator class to validate the model.
 
 `car.dart`:

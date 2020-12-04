@@ -1,6 +1,6 @@
 name: validations
 description: Validations for dart models.
-version: 0.9.4
+version: 0.9.5
 homepage: https://github.com/hx-ai/validations
 authors:
   - Rob Halff <rob.halff@gmail.com>
