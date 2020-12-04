@@ -14,7 +14,7 @@ abstract class _$LoginFormValidator implements Validator<FormData> {
       Intl.message('Email address is not valid',
           name: 'emailEmailMessage', args: [validatedValue]);
   static String passwordNotBlankMessage(Object validatedValue) =>
-      Intl.message('Password cannot be blank',
+      Intl.message('Password cannot be blank.',
           name: 'passwordNotBlankMessage', args: [validatedValue]);
   static String passwordSizeMessage(int min, int max, Object validatedValue) =>
       Intl.message(
